@@ -1,0 +1,12 @@
+import pyttsx3                       #PYthonTextToSpeechX3 package
+import PyPDF2                        #PYthonPDF2 package
+book = open('oop.pdf', 'rb')         #oop.pdf is a file to read 
+pdfReader = PyPDF2.PdfFileReader(book)
+pages = pdfReader.numPages
+print(pages) #number of pages in the book
+speaker = pyttsx3.init()
+for i in range(7, pages):
+    page = pdfReader.getPage(i)      #extracts the data from the ith page 
+    text = page.extractText()        
+    speaker.say(text)                #say the content in the respective page
+    speaker.runAndWait()             
